@@ -1,30 +1,40 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { reactive, ref, onMounted } from 'vue';
+import DataTable from 'datatables.net-vue3';
+import DataTablesCore from 'datatables.net-dt';
+ 
+DataTable.use(DataTablesCore);
+
+const datatable = ref(null); // Table reference
+
+const columns = reactive([
+  { data: 'userId', title: 'UserId', },
+  { data: 'id', title: 'id', },
+  { data: 'body', title: 'Body' },
+  { data: null, title: 'Title',render:'#title' },
+
+]);
+
+onMounted(() => {
+
+});
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
-</template>
+  <div class="p-6">
+    <div class="rounded-md bg-white p-4 shadow-sm">
+      <DataTable
+        ref="datatable"
+        :columns="columns"
+        ajax="https://jsonplaceholder.typicode.com/posts?_start=0&_limit=3"
+        class="display nowrap" width="100%"
+      >
+     <template #title="{rowData}">
+      <span>{{ rowData.id }}</span>
+      <span>{{ rowData.title }}</span>
+    </template>
+      </DataTable>
+    </div>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+  </div>
+</template>
