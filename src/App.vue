@@ -92,11 +92,21 @@ onMounted(async () => {
 function fnTblClick(data){
 console.log('------>>>',data)
 }
-
+function sortData(direct){
+  let dt = datatable.value.dt;
+ 
+  if(direct === "DESC"){
+    dt.order([0, 'desc']).draw();
+  }else if(direct ==="ASC"){
+    dt.order([0, 'asc']).draw();
+  }
+}
 </script>
 
 <template>
   <div class="p-6">
+    <button @click="sortData('DESC')">Sort Desc</button>
+    <button @click="sortData('ASC')">Sort Asc</button>
     <div class="container-table">
       <DataTable ref="datatable" :columns="columns" :options="options" :ajax="ajax" class="display nowrap" width="100%">
       <template #roomCode="{rowData}">
