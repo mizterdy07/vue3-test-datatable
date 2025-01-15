@@ -2,6 +2,7 @@
 import { reactive, ref, onMounted } from 'vue';
 import DataTable from 'datatables.net-vue3';
 import DataTablesCore from 'datatables.net-dt';
+import "datatables.net-responsive-dt";
  
 DataTable.use(DataTablesCore);
 
@@ -129,6 +130,7 @@ function sortData(direct){
 </template>
 
 <style>
+@import "datatables.net-responsive-dt";
 .group-btn{
   display: flex;
   align-items: center;

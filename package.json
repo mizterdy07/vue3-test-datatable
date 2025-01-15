@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "datatables.net-dt": "^2.2.1",
-    "datatables.net-vue3": "^3.0.3",
+    "datatables.net-responsive-dt": "^3.0.3",
+    "datatables.net-vue3": "^3.0.4",
     "remixicon": "^4.6.0",
     "vue": "^3.5.13"
   },
